@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import shoe from '../assets/images/product-shoe.png'
 import shirt from '../assets/images/product-shirt.png'
 import leggings from '../assets/images/product-leggings.png'
@@ -57,11 +58,16 @@ const products = [
 const categories = ['All', 'Footwear', 'Top', 'Bottom', 'Accessories']
 
 const Collection = () => {
+  const { category } = useParams()
   const [activeCategory, setActiveCategory] = useState('All')
 
   const filteredProducts = activeCategory === 'All' 
     ? products 
     : products.filter(p => p.category === activeCategory)
+
+  // Format the title dynamically based on the URL parameter
+  const formattedCategory = category ? category.charAt(0).toUpperCase() + category.slice(1) : 'Women'
+  const titlePrefix = category === 'accessories' ? 'Accessories' : `${formattedCategory}'s`
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-20">
@@ -70,7 +76,7 @@ const Collection = () => {
         {/* Page Header */}
         <div className="mb-12 border-l-8 border-black pl-8">
           <h1 className="font-audiowide text-6xl text-black uppercase leading-none tracking-tighter">
-            Our <span className="text-gecko-orange">Collection</span>
+            {titlePrefix} <span className="text-gecko-orange">Collection</span>
           </h1>
           <p className="text-gray-500 mt-4 max-w-2xl font-medium tracking-tight">
             Engineered for the elite. Explore our full range of high-performance gear designed to withstand the most demanding ascents.

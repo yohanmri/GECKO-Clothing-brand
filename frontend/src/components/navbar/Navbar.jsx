@@ -125,7 +125,7 @@ const Navbar = () => {
       </div>
 
       {/* ─── MOBILE DROPDOWN ─── */}
-      <div className={`absolute top-[48px] w-full bg-black overflow-hidden transition-all duration-300 pointer-events-auto md:hidden ${menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className={`absolute top-[48px] w-full bg-black overflow-hidden transition-all duration-300 pointer-events-auto md:hidden ${menuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'}`}>
         <ul className="flex flex-col py-4">
           {navLinks.map((link) => {
             const isCollection = link.name === 'Collection'
@@ -142,6 +142,15 @@ const Navbar = () => {
                 >
                   {link.name}
                 </NavLink>
+                {/* Sub-links specifically for the mobile menu */}
+                {isCollection && (
+                  <div className="flex flex-col bg-[#9D6864] mb-2">
+                    <NavLink to="/collection/women" onClick={() => setMenuOpen(false)} className="block px-12 py-3 font-audiowide text-xs uppercase tracking-widest text-white hover:text-black transition-colors">Women</NavLink>
+                    <NavLink to="/collection/men" onClick={() => setMenuOpen(false)} className="block px-12 py-3 font-audiowide text-xs uppercase tracking-widest text-white hover:text-black transition-colors">Men</NavLink>
+                    <NavLink to="/collection/kids" onClick={() => setMenuOpen(false)} className="block px-12 py-3 font-audiowide text-xs uppercase tracking-widest text-white hover:text-black transition-colors">Kids</NavLink>
+                    <NavLink to="/collection/accessories" onClick={() => setMenuOpen(false)} className="block px-12 py-3 font-audiowide text-xs uppercase tracking-widest text-white hover:text-black transition-colors">Accessories</NavLink>
+                  </div>
+                )}
               </li>
             )
           })}

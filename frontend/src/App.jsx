@@ -15,10 +15,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="collection" element={<Navigate to="/collection/women" replace />} />
-          <Route path="collection/women" element={<Collection />} />
-          <Route path="collection/men" element={<Collection />} />
-          <Route path="collection/kids" element={<Collection />} />
-          <Route path="collection/accessories" element={<Collection />} />
+          <Route path="collection/:category" element={<Collection />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Route>
