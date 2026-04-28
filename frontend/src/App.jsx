@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import LayoutAdmin from './components/layout/LayoutAdmin'
 import Home from './pages/Home'
@@ -14,7 +14,11 @@ function App() {
         {/* Frontend Routes */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="collection" element={<Collection />} />
+          <Route path="collection" element={<Navigate to="/collection/women" replace />} />
+          <Route path="collection/women" element={<Collection />} />
+          <Route path="collection/men" element={<Collection />} />
+          <Route path="collection/kids" element={<Collection />} />
+          <Route path="collection/accessories" element={<Collection />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Route>
