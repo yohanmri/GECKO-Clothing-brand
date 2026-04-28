@@ -55,7 +55,12 @@ const products = [
   },
 ]
 
-const categories = ['All', 'Footwear', 'Top', 'Bottom', 'Accessories']
+const exploreFilters = {
+  women: ['All', 'T-shirts', 'Polos', 'Crop tops', 'Sports Bras', 'Tanks', 'Leggings', 'Skirts', 'Shorts', 'Hoodies & Jackets', 'Jeans', 'Joggers & Pants'],
+  men: ['All', 'T-shirts', 'Shirts', 'Polos', 'Shorts', 'Tanks', 'Compressions', 'Hoodies & Jackets', 'Jeans', 'Joggers & Pants', 'Underwear'],
+  kids: ['All', 'T-shirts', 'Polos', 'Shorts', 'Tanks', 'Leggings', 'Hoodies & Jackets', 'Joggers & Pants'],
+  accessories: ['All', 'Hats & Caps', 'Bags & Backpacks', 'Socks', 'Water Bottles', 'Gym Equipment', 'Towels']
+}
 
 const Collection = () => {
   const { category } = useParams()
@@ -64,6 +69,9 @@ const Collection = () => {
   const filteredProducts = activeCategory === 'All' 
     ? products 
     : products.filter(p => p.category === activeCategory)
+
+  const safeCategoryKey = category && exploreFilters[category.toLowerCase()] ? category.toLowerCase() : 'women'
+  const currentFilters = exploreFilters[safeCategoryKey]
 
   // Format the title dynamically based on the URL parameter
   const formattedCategory = category ? category.charAt(0).toUpperCase() + category.slice(1) : 'Women'
@@ -88,19 +96,19 @@ const Collection = () => {
           {/* Sidebar Filters */}
           <aside className="w-full lg:w-64 flex-shrink-0">
             <div className="sticky top-40">
-              <h3 className="font-audiowide text-sm uppercase tracking-widest text-gray-400 mb-6">Categories</h3>
+              <h3 className="font-audiowide text-sm uppercase tracking-widest text-gray-400 mb-6">Explore</h3>
               <div className="flex flex-wrap lg:flex-col gap-2">
-                {categories.map((cat) => (
+                {currentFilters.map((filterName) => (
                   <button
-                    key={cat}
-                    onClick={() => setActiveCategory(cat)}
+                    key={filterName}
+                    onClick={() => setActiveCategory(filterName)}
                     className={`px-6 py-3 text-left font-audiowide text-sm uppercase tracking-wider transition-all duration-300 border-2 ${
-                      activeCategory === cat 
+                      activeCategory === filterName 
                         ? 'bg-black text-white border-black' 
                         : 'bg-transparent text-black border-gray-100 hover:border-black'
                     }`}
                   >
-                    {cat}
+                    {filterName}
                   </button>
                 ))}
               </div>

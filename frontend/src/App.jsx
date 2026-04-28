@@ -3,6 +3,9 @@ import Layout from './components/layout/Layout'
 import LayoutAdmin from './components/layout/LayoutAdmin'
 import Home from './pages/Home'
 import Collection from './pages/Collection'
+import GiftCards from './pages/GiftCards'
+import Cart from './pages/Cart'
+import Profile from './pages/Profile'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import AdminHome from './pages/AdminHome'
@@ -16,6 +19,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="collection" element={<Navigate to="/collection/women" replace />} />
           <Route path="collection/:category" element={<Collection />} />
+          <Route path="gift-cards" element={<GiftCards />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
         </Route>

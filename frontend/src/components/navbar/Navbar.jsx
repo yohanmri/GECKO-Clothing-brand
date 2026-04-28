@@ -84,12 +84,12 @@ const Navbar = () => {
 
           {/* Icons */}
           <div className="flex items-center gap-8 ml-1">
-            <button className="text-white hover:text-[#E17F1D] transition-colors">
+            <Link to="/cart" className="text-white hover:text-[#E17F1D] transition-colors">
               <ShoppingCart size={18} strokeWidth={1.5} />
-            </button>
-            <button className="text-white hover:text-[#E17F1D] transition-colors mr-6">
+            </Link>
+            <Link to="/profile" className="text-white hover:text-[#E17F1D] transition-colors mr-6">
               <User size={18} strokeWidth={1.5} />
-            </button>
+            </Link>
           </div>
         </nav>
 
