@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import heroWomanVideo from '../../assets/videos/hero-woman.webm'
+import heroBg from '../../assets/videos/hero1.mp4'
 
 const Hero = () => {
   const videoRef = useRef(null)
@@ -15,6 +16,20 @@ const Hero = () => {
       className="relative w-full overflow-hidden bg-white"
       style={{ height: '100vh', minHeight: '580px' }}
     >
+      {/* ─── FULLSCREEN BACKGROUND VIDEO ─── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-80"
+        >
+          <source src={heroBg} type="video/mp4" />
+        </video>
+        {/* Subtle dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/5" />
+      </div>
 
       {/*
        * ─── RIGHT SIDE SHAPE (Screenshot 1) ────────────────────────────────
@@ -45,31 +60,7 @@ const Hero = () => {
         }}
       />
 
-      {/*
-       * ─── HERO WOMAN VIDEO ───────────────────────────────────────────────
-       * z-50: sits above the right black bars
-       * Anchored to the right, from below navbar to above bottom bar
-       */}
-      <div
-        className="absolute z-50 pointer-events-none select-none"
-        style={{
-          right: '0%',
-          top: '48px',
-          bottom: '100px',
-          width: 'clamp(200px, 40%, 550px)',
-        }}
-      >
-        <video
-          ref={videoRef}
-          src={heroWomanVideo}
-          className="w-full h-full object-contain object-bottom"
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ pointerEvents: 'none' }}
-        />
-      </div>
+
 
       {/*
        * ─── GECKO + SUBTITLE — left zone, vertically centered ──────────────
