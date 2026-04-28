@@ -22,12 +22,11 @@ const Navbar = () => {
 
       {/*
        * ─── TOP-LEFT SHAPE (Logo Block) ───────────────────────────────────
-       * Fixed pixel width: Locks the shape so it never stretches or squishes.
+       * Responsive widths: 100px on mobile, 130px on tablets/desktop
        */}
       <div
-        className="absolute top-0 left-0 bg-black pointer-events-none"
+        className="absolute top-0 left-0 bg-black pointer-events-none w-[100px] md:w-[130px]"
         style={{
-          width: '130px',
           height: '58px',
           borderRadius: '0 0 48px 0',
         }}
@@ -35,19 +34,20 @@ const Navbar = () => {
 
       {/*
        * ─── TOP-RIGHT NAV BAR ───────────────────────────────────────────────
-       * Fixed pixel width: Keeps the text gap identical on all screens, 
-       * only the middle empty space (the thin line) will stretch/shrink.
+       * Responsive widths: 
+       * - Mobile: 100px (just for hamburger)
+       * - iPad/Tablet (md): 600px 
+       * - Desktop (lg): 750px
        */}
       <div
-        className="absolute top-0 right-0 bg-black flex items-center justify-end pointer-events-auto"
+        className="absolute top-0 right-0 bg-black flex items-center justify-end pointer-events-auto w-[100px] md:w-[600px] lg:w-[750px]"
         style={{
-          width: '750px',
           height: '48px',
           /* Sharp thorn diagonal on the left edge */
           clipPath: 'polygon(0 0, 100% 0, 100% 100%, 48px 100%)',
         }}
       >
-        <nav className="hidden md:flex items-center gap-12 pr-2">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-12 pr-2">
           {navLinks.map((link) => (
             <NavLink
               key={link.name}
