@@ -11,6 +11,30 @@ const navLinks = [
   { name: 'Contact', path: '/contact' },
 ]
 
+// ─── LEFT BRAND GROUP ─────────────────────────────────────────────────────
+const LeftBrandGroup = () => (
+  <>
+    {/* Black rounded shape — fixed size, no responsive changes */}
+    <div
+      className="absolute top-0 left-0 bg-black pointer-events-none w-[130px]"
+      style={{ height: '58px', borderRadius: '0 0 48px 0' }}
+    />
+    {/* Gecko Logo — fixed position and size, no responsive changes */}
+    <div
+      className="absolute pointer-events-auto left-[60px] top-[-32px]"
+      style={{ zIndex: 60 }}
+    >
+      <Link to="/">
+        <img
+          src={logo}
+          alt="GECKO"
+          className="w-auto object-contain h-[200px]"
+        />
+      </Link>
+    </div>
+  </>
+)
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -20,17 +44,8 @@ const Navbar = () => {
       {/* ─── TOP THIN LINE (Figma Requirement) ─── */}
       <div className="w-full h-[16px] bg-black absolute top-0 left-0" />
 
-      {/*
-       * ─── TOP-LEFT SHAPE (Logo Block) ───────────────────────────────────
-       * Responsive widths: 100px on mobile, 130px on tablets/desktop
-       */}
-      <div
-        className="absolute top-0 left-0 bg-black pointer-events-none w-[100px] md:w-[130px]"
-        style={{
-          height: '58px',
-          borderRadius: '0 0 48px 0',
-        }}
-      />
+      {/* ─── LEFT BRAND GROUP ─── */}
+      <LeftBrandGroup />
 
       {/*
        * ─── TOP-RIGHT NAV BAR ───────────────────────────────────────────────
@@ -85,22 +100,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/*
-       * ─── LOGO ────────────────────────────────────────────────────────────
-       * Sits on top of the top-left black shape, bleeds slightly above
-       */}
-      <div
-        className="absolute pointer-events-auto transition-all duration-300 left-[12px] top-[-16px] md:left-[60px] md:top-[-32px]"
-        style={{ zIndex: 60 }}
-      >
-        <Link to="/">
-          <img
-            src={logo}
-            alt="GECKO"
-            className="w-auto object-contain transition-all duration-300 h-[100px] md:h-[200px]"
-          />
-        </Link>
-      </div>
+
 
       {/* ─── MOBILE DROPDOWN ─── */}
       <div className={`absolute top-[48px] w-full bg-black overflow-hidden transition-all duration-300 pointer-events-auto md:hidden ${menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
