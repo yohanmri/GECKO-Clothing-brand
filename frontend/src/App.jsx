@@ -3,6 +3,7 @@ import Layout from './components/layout/Layout'
 import LayoutAdmin from './components/layout/LayoutAdmin'
 import Home from './pages/Home'
 import Collection from './pages/Collection'
+import ProductDetail from './pages/ProductDetail'
 import GiftCards from './pages/GiftCards'
 import Cart from './pages/Cart'
 import Profile from './pages/Profile'
@@ -19,6 +20,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="collection" element={<Navigate to="/collection/women" replace />} />
           <Route path="collection/:category" element={<Collection />} />
+          <Route path="collection/:category/:id" element={<ProductDetail />} />
           <Route path="gift-cards" element={<GiftCards />} />
           <Route path="cart" element={<Cart />} />
           <Route path="profile" element={<Profile />} />

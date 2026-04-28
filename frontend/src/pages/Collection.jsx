@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import shoe from '../assets/images/product-shoe.png'
 import shirt from '../assets/images/product-shirt.png'
 import leggings from '../assets/images/product-leggings.png'
@@ -64,6 +64,7 @@ const exploreFilters = {
 
 const Collection = () => {
   const { category } = useParams()
+  const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState('All')
 
   const filteredProducts = activeCategory === 'All' 
@@ -130,7 +131,8 @@ const Collection = () => {
               {filteredProducts.map((product) => (
                 <div 
                   key={product.id}
-                  className="group relative bg-gray-50 border border-gray-100 overflow-hidden transition-all duration-500 hover:border-black"
+                  onClick={() => navigate(`/collection/${safeCategoryKey}/${product.id}`)}
+                  className="group relative bg-gray-50 border border-gray-100 overflow-hidden transition-all duration-500 hover:border-black cursor-pointer"
                 >
                   {/* Tag */}
                   {product.tag && (
@@ -164,7 +166,12 @@ const Collection = () => {
                       </p>
                     </div>
                     
-                    <button className="w-full mt-6 py-4 bg-black text-white font-audiowide text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gecko-orange overflow-hidden relative">
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent navigating to product detail when clicking "Add to Cart"
+                      }}
+                      className="w-full mt-6 py-4 bg-black text-white font-audiowide text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gecko-orange overflow-hidden relative"
+                    >
                       <span className="relative z-10">Add to Cart</span>
                     </button>
                   </div>

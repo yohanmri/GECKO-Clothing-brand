@@ -1,6 +1,6 @@
 const Profile = () => {
   return (
-    <div className="bg-white min-h-screen pt-32 pb-20">
+    <div className="bg-white min-h-screen pt-32 pb-20 text-black">
       <div className="max-w-[1400px] mx-auto px-6">
         
         {/* Page Header */}
