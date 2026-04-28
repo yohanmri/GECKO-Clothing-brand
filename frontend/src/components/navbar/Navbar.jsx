@@ -18,17 +18,16 @@ const Navbar = () => {
     <header className="absolute top-0 left-0 w-full z-50 pointer-events-none">
 
       {/* ─── TOP THIN LINE (Figma Requirement) ─── */}
-      <div className="w-full h-[15px] bg-black absolute top-0 left-0" />
+      <div className="w-full h-[16px] bg-black absolute top-0 left-0" />
 
       {/*
        * ─── TOP-LEFT SHAPE (Logo Block) ───────────────────────────────────
-       * Now matches the width (48%) and height (48px) of the nav component.
-       * Edge is ROUNDED as requested.
+       * Fixed pixel width: Locks the shape so it never stretches or squishes.
        */}
       <div
         className="absolute top-0 left-0 bg-black pointer-events-none"
         style={{
-          width: '9%',
+          width: '130px',
           height: '58px',
           borderRadius: '0 0 48px 0',
         }}
@@ -36,13 +35,13 @@ const Navbar = () => {
 
       {/*
        * ─── TOP-RIGHT NAV BAR ───────────────────────────────────────────────
-       * Width: 55% (symmetrical with logo block)
-       * Edge is a THORN (clip-path) as requested previously.
+       * Fixed pixel width: Keeps the text gap identical on all screens, 
+       * only the middle empty space (the thin line) will stretch/shrink.
        */}
       <div
         className="absolute top-0 right-0 bg-black flex items-center justify-end pointer-events-auto"
         style={{
-          width: '50%',
+          width: '750px',
           height: '48px',
           /* Sharp thorn diagonal on the left edge */
           clipPath: 'polygon(0 0, 100% 0, 100% 100%, 48px 100%)',
