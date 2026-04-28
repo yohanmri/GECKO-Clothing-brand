@@ -30,19 +30,19 @@ const GiftCards = () => {
 
           {/* Form / Options */}
           <div className="flex-1 lg:pl-12">
-            <h3 className="font-audiowide text-xl uppercase mb-6">Select Amount</h3>
+            <h3 className="font-audiowide text-xl uppercase mb-6 text-gecko-orange">Select Amount</h3>
             <div className="grid grid-cols-3 gap-4 mb-8">
               {['$50', '$100', '$150', '$200', '$250', '$500'].map((amount) => (
                 <button 
                   key={amount}
-                  className="py-4 border-2 border-gray-100 font-audiowide text-lg transition-all duration-300 hover:border-black hover:bg-black hover:text-white"
+                  className="py-4 border-2 border-gray-100 font-audiowide text-lg text-black transition-all duration-300 hover:border-black hover:bg-black hover:text-white"
                 >
                   {amount}
                 </button>
               ))}
             </div>
 
-            <h3 className="font-audiowide text-xl uppercase mb-6">Delivery Details</h3>
+            <h3 className="font-audiowide text-xl uppercase mb-6 text-gecko-orange">Delivery Details</h3>
             <div className="space-y-4 mb-8">
               <input 
                 type="email" 
