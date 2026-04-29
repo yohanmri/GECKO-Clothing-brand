@@ -3,9 +3,9 @@ import shirt from '../../assets/images/product-shirt.png'
 import leggings from '../../assets/images/product-leggings.png'
 
 const products = [
-  { id: 1, name: 'Apex Runner', price: '$145', image: shoe },
-  { id: 2, name: 'Core Compression', price: '$65', image: shirt },
-  { id: 3, name: 'Ascent Leggings', price: '$85', image: leggings },
+  { id: 1, name: 'Apex Runner', price: 'LKR 14 500', image: shoe },
+  { id: 2, name: 'Core Compression', price: 'LKR 6 500', image: shirt },
+  { id: 3, name: 'Ascent Leggings', price: 'LKR 8 500', image: leggings },
 ]
 
 const FeaturedProducts = () => {
@@ -33,7 +33,7 @@ const FeaturedProducts = () => {
               </div>
               <div className="mt-8 flex justify-between items-center">
                 <h3 className="font-audiowide text-xl text-black uppercase tracking-wider">{product.name}</h3>
-                <span className="font-sans text-xl font-bold text-[#E17F1D]">{product.price}</span>
+                <span className="font-bold text-xl text-[#E17F1D]">{product.price}</span>
               </div>
             </div>
           ))}

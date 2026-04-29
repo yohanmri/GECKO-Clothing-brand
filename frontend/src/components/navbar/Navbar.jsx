@@ -21,14 +21,14 @@ const LeftBrandGroup = () => (
     />
     {/* Gecko Logo — fixed position and size, no responsive changes */}
     <div
-      className="absolute pointer-events-auto left-[60px] top-[-32px]"
+      className="absolute pointer-events-auto left-[70px] top-[-26px]"
       style={{ zIndex: 60 }}
     >
       <Link to="/">
         <img
           src={logo}
           alt="GECKO"
-          className="w-auto object-contain h-[200px]"
+          className="w-auto object-contain h-[160px]"
         />
       </Link>
     </div>

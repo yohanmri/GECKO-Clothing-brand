@@ -1,13 +1,27 @@
+import { Search } from 'lucide-react'
+
 const Profile = () => {
   return (
     <div className="bg-white min-h-screen pt-32 pb-20 text-black">
       <div className="max-w-[1400px] mx-auto px-6">
         
         {/* Page Header */}
-        <div className="mb-12 border-l-8 border-black pl-8">
-          <h1 className="font-audiowide text-6xl text-black uppercase leading-none tracking-tighter">
-            My <span className="text-gecko-orange">Profile</span>
-          </h1>
+        <div className="mb-12 border-l-8 border-black pl-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <h1 className="font-audiowide text-3xl text-black uppercase leading-none tracking-tighter">
+              My <span className="text-gecko-orange">Profile</span>
+            </h1>
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative w-full md:w-80">
+            <input 
+              type="text" 
+              placeholder="SEARCH..." 
+              className="w-full bg-gray-50 border-b-2 border-black py-3 px-4 font-audiowide text-[10px] uppercase tracking-widest focus:outline-none focus:bg-gray-100 transition-colors"
+            />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-black" size={16} strokeWidth={1.5} />
+          </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-16">

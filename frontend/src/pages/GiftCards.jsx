@@ -1,16 +1,30 @@
+import { Search } from 'lucide-react'
+
 const GiftCards = () => {
   return (
     <div className="bg-white min-h-screen pt-32 pb-20">
       <div className="max-w-[1400px] mx-auto px-6">
         
         {/* Page Header */}
-        <div className="mb-12 border-l-8 border-black pl-8">
-          <h1 className="font-audiowide text-6xl text-black uppercase leading-none tracking-tighter">
-            Gift <span className="text-gecko-orange">Cards</span>
-          </h1>
-          <p className="text-gray-500 mt-4 max-w-2xl font-medium tracking-tight">
-            Give the gift of elite performance. GECKO digital gift cards are delivered instantly.
-          </p>
+        <div className="mb-12 border-l-8 border-black pl-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <h1 className="font-audiowide text-3xl text-black uppercase leading-none tracking-tighter">
+              Gift <span className="text-gecko-orange">Cards</span>
+            </h1>
+            <p className="text-gray-500 mt-4 max-w-2xl font-medium tracking-tight">
+              Give the gift of elite performance. GECKO digital gift cards are delivered instantly.
+            </p>
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative w-full md:w-80">
+            <input 
+              type="text" 
+              placeholder="SEARCH..." 
+              className="w-full bg-gray-50 border-b-2 border-black py-3 px-4 font-audiowide text-[10px] uppercase tracking-widest focus:outline-none focus:bg-gray-100 transition-colors"
+            />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-black" size={16} strokeWidth={1.5} />
+          </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12 mt-16">
@@ -32,10 +46,10 @@ const GiftCards = () => {
           <div className="flex-1 lg:pl-12">
             <h3 className="font-audiowide text-xl uppercase mb-6 text-gecko-orange">Select Amount</h3>
             <div className="grid grid-cols-3 gap-4 mb-8">
-              {['$50', '$100', '$150', '$200', '$250', '$500'].map((amount) => (
+              {['LKR 5 000', 'LKR 10 000', 'LKR 15 000', 'LKR 20 000', 'LKR 25 000', 'LKR 50 000'].map((amount) => (
                 <button 
                   key={amount}
-                  className="py-4 border-2 border-gray-100 font-audiowide text-lg text-black transition-all duration-300 hover:border-black hover:bg-black hover:text-white"
+                  className="py-4 border-2 border-gray-100 font-bold text-base text-black transition-all duration-300 hover:border-black hover:bg-black hover:text-white"
                 >
                   {amount}
                 </button>

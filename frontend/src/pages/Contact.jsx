@@ -4,8 +4,6 @@ const Contact = () => {
       <div className="max-w-[1400px] mx-auto px-6">
         
         <div className="flex flex-col lg:flex-row gap-20">
-          
-          {/* Contact Info */}
           <div className="w-full lg:w-1/3">
             <div className="border-l-8 border-black pl-8 mb-12">
               <h1 className="font-audiowide text-6xl text-black uppercase leading-none tracking-tighter">

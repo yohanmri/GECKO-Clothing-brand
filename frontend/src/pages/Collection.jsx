@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import { Search, ShoppingCart } from 'lucide-react'
 import shoe from '../assets/images/product-shoe.png'
 import shirt from '../assets/images/product-shirt.png'
 import leggings from '../assets/images/product-leggings.png'
@@ -9,7 +10,7 @@ const products = [
     id: 1,
     name: 'Apex Runner',
     category: 'Footwear',
-    price: 145,
+    price: 14500,
     image: shoe,
     tag: 'New'
   },
@@ -17,7 +18,7 @@ const products = [
     id: 2,
     name: 'Core Compression',
     category: 'Top',
-    price: 65,
+    price: 6500,
     image: shirt,
     tag: 'Best Seller'
   },
@@ -25,7 +26,7 @@ const products = [
     id: 3,
     name: 'Ascent Leggings',
     category: 'Bottom',
-    price: 85,
+    price: 8500,
     image: leggings,
     tag: 'Featured'
   },
@@ -33,7 +34,7 @@ const products = [
     id: 4,
     name: 'Peak Performance Shorts',
     category: 'Bottom',
-    price: 55,
+    price: 5500,
     image: leggings, // Reusing for placeholder
     tag: null
   },
@@ -41,7 +42,7 @@ const products = [
     id: 5,
     name: 'Gravity Tech Tee',
     category: 'Top',
-    price: 45,
+    price: 4500,
     image: shirt, // Reusing for placeholder
     tag: 'Promo'
   },
@@ -49,7 +50,7 @@ const products = [
     id: 6,
     name: 'Terrain X-1',
     category: 'Footwear',
-    price: 165,
+    price: 16500,
     image: shoe, // Reusing for placeholder
     tag: null
   },
@@ -67,8 +68,8 @@ const Collection = () => {
   const navigate = useNavigate()
   const [activeCategory, setActiveCategory] = useState('All')
 
-  const filteredProducts = activeCategory === 'All' 
-    ? products 
+  const filteredProducts = activeCategory === 'All'
+    ? products
     : products.filter(p => p.category === activeCategory)
 
   const safeCategoryKey = category && exploreFilters[category.toLowerCase()] ? category.toLowerCase() : 'women'
@@ -81,21 +82,33 @@ const Collection = () => {
   return (
     <div className="bg-white min-h-screen pt-32 pb-20">
       <div className="max-w-[1400px] mx-auto px-6">
-        
+
         {/* Page Header */}
-        <div className="mb-12 border-l-8 border-black pl-8">
-          <h1 className="font-audiowide text-6xl text-black uppercase leading-none tracking-tighter">
-            {titlePrefix} <span className="text-gecko-orange">Collection</span>
-          </h1>
-          <p className="text-gray-500 mt-4 max-w-2xl font-medium tracking-tight">
-            Engineered for the elite. Explore our full range of high-performance gear designed to withstand the most demanding ascents.
-          </p>
+        <div className="mb-12 border-l-8 border-black pl-10 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <h1 className="font-audiowide text-3xl text-black uppercase leading-none tracking-tighter">
+              {titlePrefix} <span className="text-gecko-orange">Collection</span>
+            </h1>
+            <p className="text-gray-500 mt-4 max-w-2xl font-medium tracking-tight">
+              Engineered for the elite. Explore our full range of high-performance gear designed to withstand the most demanding ascents.
+            </p>
+          </div>
+
+          {/* Search Bar */}
+          <div className="relative w-full md:w-80">
+            <input 
+              type="text" 
+              placeholder="SEARCH PRODUCTS..." 
+              className="w-full bg-gray-50 border-b-2 border-black py-3 px-4 font-audiowide text-[10px] uppercase tracking-widest focus:outline-none focus:bg-gray-100 transition-colors"
+            />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-black" size={16} strokeWidth={1.5} />
+          </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12">
-          
+
           {/* Sidebar Filters */}
-          <aside className="w-full lg:w-64 flex-shrink-0">
+          <aside className="w-full lg:w-52 flex-shrink-0">
             <div className="sticky top-40">
               <h3 className="font-audiowide text-sm uppercase tracking-widest text-gray-400 mb-6">Explore</h3>
               <div className="flex flex-wrap lg:flex-col gap-2">
@@ -103,11 +116,10 @@ const Collection = () => {
                   <button
                     key={filterName}
                     onClick={() => setActiveCategory(filterName)}
-                    className={`px-6 py-3 text-left font-audiowide text-sm uppercase tracking-wider transition-all duration-300 border-2 ${
-                      activeCategory === filterName 
-                        ? 'bg-black text-white border-black' 
-                        : 'bg-transparent text-black border-gray-100 hover:border-black'
-                    }`}
+                    className={`px-4 py-2 text-left font-audiowide text-xs uppercase tracking-wider transition-all duration-300 border-2 ${activeCategory === filterName
+                      ? 'bg-black text-white border-black'
+                      : 'bg-transparent text-black border-gray-100 hover:border-black'
+                      }`}
                   >
                     {filterName}
                   </button>
@@ -127,9 +139,9 @@ const Collection = () => {
 
           {/* Product Grid */}
           <main className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredProducts.map((product) => (
-                <div 
+                <div
                   key={product.id}
                   onClick={() => navigate(`/collection/${safeCategoryKey}/${product.id}`)}
                   className="group relative bg-gray-50 border border-gray-100 overflow-hidden transition-all duration-500 hover:border-black cursor-pointer"
@@ -143,37 +155,38 @@ const Collection = () => {
 
                   {/* Image Container */}
                   <div className="aspect-[4/5] overflow-hidden bg-gray-200">
-                    <img 
-                      src={product.image} 
-                      alt={product.name} 
+                    <img
+                      src={product.image}
+                      alt={product.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
 
                   {/* Product Info */}
-                  <div className="p-6 bg-white">
-                    <div className="flex justify-between items-start mb-2">
-                      <div>
-                        <p className="text-[10px] uppercase tracking-widest text-gecko-orange font-audiowide mb-1">
-                          {product.category}
-                        </p>
-                        <h3 className="font-audiowide text-lg text-black uppercase leading-tight">
-                          {product.name}
-                        </h3>
-                      </div>
-                      <p className="font-audiowide text-xl text-black">
-                        ${product.price}
+                  <div className="pt-3 pb-5 px-5 bg-white flex flex-col min-h-[150px]">
+                    <div className="flex-1">
+                      <p className="text-[9px] uppercase tracking-widest text-gecko-orange font-bold mb-1">
+                        {product.category}
                       </p>
+                      <h3 className="text-sm text-black uppercase font-bold leading-tight mb-2">
+                        {product.name}
+                      </h3>
                     </div>
-                    
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation(); // Prevent navigating to product detail when clicking "Add to Cart"
-                      }}
-                      className="w-full mt-6 py-4 bg-black text-white font-audiowide text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gecko-orange overflow-hidden relative"
-                    >
-                      <span className="relative z-10">Add to Cart</span>
-                    </button>
+
+                    <div className="flex items-center justify-between gap-2 mt-auto pt-4 border-t border-gray-50">
+                      <p className="text-[12px] md:text-[14px] text-black font-bold whitespace-nowrap">
+                        LKR {product.price.toLocaleString().replace(/,/g, ' ')}.00
+                      </p>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent navigating to product detail when clicking "Add to Cart"
+                        }}
+                        className="shrink-0 px-5 py-2.5 bg-black text-white font-audiowide text-[9px] uppercase tracking-widest transition-all duration-300 hover:bg-gecko-orange flex items-center justify-center gap-2"
+                      >
+                        <ShoppingCart size={13} strokeWidth={2} />
+                        <span>Add</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}

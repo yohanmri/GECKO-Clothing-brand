@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeft, CreditCard, Banknote } from 'lucide-react'
+import { ArrowLeft, ShoppingCart, Zap, CreditCard, Banknote } from 'lucide-react'
 import shoe from '../assets/images/product-shoe.png'
 
 const ProductDetail = () => {
@@ -20,28 +20,32 @@ const ProductDetail = () => {
           </button>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-16">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
           
-          {/* Product Image Gallery */}
-          <div className="flex-1">
-            <div className="aspect-[4/5] bg-gray-100 overflow-hidden relative group">
-              {/* Tag */}
-              <div className="absolute top-6 left-6 z-10 bg-black text-white px-4 py-2 text-xs font-audiowide uppercase tracking-widest">
-                New Arrival
-              </div>
-              <img 
-                src={shoe} 
-                alt="Product" 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-              />
-            </div>
-            {/* Thumbnails */}
-            <div className="grid grid-cols-4 gap-4 mt-4">
-              {[1, 2, 3, 4].map(num => (
-                <div key={num} className="aspect-[4/5] bg-gray-100 cursor-pointer border-2 border-transparent hover:border-black transition-colors">
-                  <img src={shoe} alt={`Thumbnail ${num}`} className="w-full h-full object-cover" />
+          {/* Image Gallery */}
+          <div className="w-full lg:w-[550px] flex gap-4 lg:sticky lg:top-40 h-fit">
+            {/* Thumbnails - Desktop */}
+            <div className="hidden lg:flex flex-col gap-3 w-20 shrink-0">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className={`bg-gray-50 aspect-square cursor-pointer border-2 transition-all duration-300 ${i === 1 ? 'border-black' : 'border-transparent hover:border-gray-300'}`}>
+                  <img src={shoe} alt="" className={`w-full h-full object-cover ${i !== 1 && 'opacity-60'}`} />
                 </div>
               ))}
+            </div>
+            
+            {/* Main Image */}
+            <div className="flex-1">
+              <div className="bg-gray-50 aspect-[4/5] overflow-hidden">
+                <img src={shoe} alt="Apex Runner" className="w-full h-full object-cover" />
+              </div>
+              {/* Thumbnails - Mobile */}
+              <div className="grid grid-cols-4 gap-3 mt-4 lg:hidden">
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="bg-gray-50 aspect-square">
+                    <img src={shoe} alt="" className="w-full h-full object-cover" />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -49,34 +53,34 @@ const ProductDetail = () => {
           <div className="flex-1 lg:py-8 lg:pr-12">
             
             {/* Header */}
-            <div className="mb-8 border-b border-gray-200 pb-8">
-              <p className="text-xs uppercase tracking-widest text-gecko-orange font-audiowide mb-3">
+            <div className="mb-6 border-b border-gray-100 pb-6">
+              <p className="text-[10px] uppercase tracking-widest text-gecko-orange font-audiowide mb-2">
                 Footwear
               </p>
-              <h1 className="font-audiowide text-4xl lg:text-5xl text-black uppercase leading-tight mb-4">
+              <h1 className="font-audiowide text-3xl text-black uppercase leading-tight mb-3">
                 Apex Runner X-1
               </h1>
-              <p className="font-audiowide text-3xl text-black">
-                $145.00
+              <p className="font-bold text-2xl text-black">
+                LKR {id === '1' ? '14500' : id === '2' ? '6500' : '8500'}.00
               </p>
             </div>
 
             {/* Description */}
-            <p className="text-gray-500 mb-10 font-medium tracking-tight leading-relaxed">
+            <p className="text-gray-500 mb-6 text-sm font-medium tracking-tight leading-relaxed">
               Engineered for the elite. The Apex Runner X-1 provides unprecedented grip and dynamic support, designed to withstand the most demanding ascents and unpredictable terrains.
             </p>
 
             {/* Selectors */}
-            <div className="space-y-8 mb-12">
+            <div className="space-y-6 mb-8">
               {/* Size */}
               <div>
-                <div className="flex justify-between items-center mb-4">
-                  <span className="font-audiowide text-sm uppercase tracking-widest">Select Size</span>
-                  <button className="text-xs text-gray-400 uppercase tracking-widest underline hover:text-black">Size Guide</button>
+                <div className="flex justify-between items-center mb-3">
+                  <span className="font-audiowide text-xs uppercase tracking-widest">Select Size</span>
+                  <button className="text-[10px] text-gray-400 uppercase tracking-widest underline hover:text-black">Size Guide</button>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2">
                   {['8', '8.5', '9', '9.5', '10', '10.5', '11'].map(size => (
-                    <button key={size} className="w-14 h-14 flex items-center justify-center border-2 border-gray-200 font-audiowide text-black hover:border-black hover:bg-black hover:text-white transition-all duration-200">
+                    <button key={size} className="w-12 h-12 flex items-center justify-center border-2 border-gray-100 font-audiowide text-xs text-black hover:border-black hover:bg-black hover:text-white transition-all duration-200">
                       {size}
                     </button>
                   ))}
@@ -85,22 +89,24 @@ const ProductDetail = () => {
 
               {/* Color */}
               <div>
-                <span className="block font-audiowide text-sm uppercase tracking-widest mb-4">Color: <span className="text-gray-500">Onyx Black</span></span>
-                <div className="flex gap-4">
-                  <button className="w-12 h-12 bg-black border-2 border-black ring-2 ring-offset-2 ring-transparent focus:ring-gray-300"></button>
-                  <button className="w-12 h-12 bg-gray-200 border-2 border-gray-200 ring-2 ring-offset-2 ring-transparent hover:ring-gray-300"></button>
-                  <button className="w-12 h-12 bg-gecko-orange border-2 border-gecko-orange ring-2 ring-offset-2 ring-transparent hover:ring-gray-300"></button>
+                <span className="block font-audiowide text-xs uppercase tracking-widest mb-3">Color: <span className="text-gray-500">Onyx Black</span></span>
+                <div className="flex gap-3">
+                  <button className="w-10 h-10 bg-black border-2 border-black ring-2 ring-offset-2 ring-transparent focus:ring-gray-300"></button>
+                  <button className="w-10 h-10 bg-gray-200 border-2 border-gray-200 ring-2 ring-offset-2 ring-transparent hover:ring-gray-300"></button>
+                  <button className="w-10 h-10 bg-gecko-orange border-2 border-gecko-orange ring-2 ring-offset-2 ring-transparent hover:ring-gray-300"></button>
                 </div>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="space-y-4 mb-10">
-              <button className="w-full py-5 bg-black text-white font-audiowide uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gecko-orange">
-                Add to Cart
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+              <button className="flex-1 py-4 bg-black text-white font-audiowide text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gecko-orange flex items-center justify-center gap-2">
+                <ShoppingCart size={18} strokeWidth={1.5} />
+                <span>Add to Cart</span>
               </button>
-              <button className="w-full py-5 bg-gecko-orange text-white font-audiowide uppercase tracking-[0.2em] transition-all duration-300 hover:bg-black">
-                Order Now
+              <button className="flex-1 py-4 bg-gecko-orange text-white font-audiowide text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:bg-black flex items-center justify-center gap-2">
+                <Zap size={18} strokeWidth={1.5} />
+                <span>Order Now</span>
               </button>
             </div>
 
